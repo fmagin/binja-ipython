@@ -9,11 +9,18 @@ signal.signal = lambda *args, **kw: None
 
 from binaryninja import *
 
+import os
 from ipykernel import connect_qtconsole
 import ctypes
 
 #from IPython.kernel.zmq.kernelapp import IPKernelApp
 from ipykernel.kernelapp import IPKernelApp
+
+
+def redirect_stdio():
+    # Ipython uses sys.__stdout__ which leads to problem at least on windows if it isn't replaced
+    # TODO: There should be a better way that doesn't break the binja integrated shell
+    sys.__stdout__ = os.open(os.devnull, 'w')
 
 class KernelWrapper():
     def __init__(self):
@@ -26,6 +33,7 @@ class KernelWrapper():
 
     def _run_kernel(self):
         self.app.init_signal = lambda *args, **kw: None
+        redirect_stdio()
         self.app.initialize()
         self.app.start()
 
