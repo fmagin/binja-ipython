@@ -20,7 +20,7 @@ from ipykernel.kernelapp import IPKernelApp
 def redirect_stdio():
     # Ipython uses sys.__stdout__ which leads to problem at least on windows if it isn't replaced
     # TODO: There should be a better way that doesn't break the binja integrated shell
-    sys.__stdout__ = os.open(os.devnull, 'w')
+    sys.__stdout__ = open(os.devnull, 'w')
 
 class KernelWrapper():
     def __init__(self):
