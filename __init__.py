@@ -1,4 +1,5 @@
 
+import logging
 import threading
 import sys
 import signal
@@ -10,7 +11,10 @@ signal.signal = lambda *args, **kw: None
 from binaryninja import *
 
 import os
-from ipykernel import connect_qtconsole
+try:
+    from ipykernel import connect_qtconsole
+except ImportError:
+    logging.warning("No qt console found, GUI button won't work")
 import ctypes
 
 #from IPython.kernel.zmq.kernelapp import IPKernelApp
