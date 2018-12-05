@@ -1,4 +1,7 @@
 
+
+
+
 import logging
 import threading
 import sys
@@ -9,6 +12,17 @@ import signal
 signal.signal = lambda *args, **kw: None
 
 from binaryninja import *
+import binaryninja
+
+DEPENDENCY_PATH = os.path.join(
+    binaryninja.user_plugin_path,
+    "Lib",
+    "site-packages"
+)
+sys.path.append(DEPENDENCY_PATH)
+
+
+
 
 import os
 try:
