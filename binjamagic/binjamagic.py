@@ -9,6 +9,8 @@ class BinjaMagic(object):
         if len(obj) == 1:
 
             self.bip = obj[0]
+        elif len(obj) > 1:
+            raise Exception("Multiple scripting providers found (multiple tabs open) this isn't handled yet")
         else:
             raise Exception("Couldn't find scriptingprovider. Sure you are in the right kernel?")
 
@@ -25,6 +27,7 @@ class BinjaMagic(object):
             'current_address': self.bip.current_addr,
             'here': self.bip.current_selection_begin,
             'current_selection': (self.bip.current_selection_begin, self.bip.current_selection_end),
+            'bip': self.bip
         })
         if self.bip.current_func is None:
             self.shell.user_ns['current_llil'] = None
