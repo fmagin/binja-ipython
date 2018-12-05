@@ -14,6 +14,7 @@ signal.signal = lambda *args, **kw: None
 from binaryninja import *
 import binaryninja
 
+import os
 DEPENDENCY_PATH = os.path.join(
     binaryninja.user_plugin_path,
     "Lib",
@@ -24,7 +25,6 @@ sys.path.append(DEPENDENCY_PATH)
 
 
 
-import os
 try:
     from ipykernel import connect_qtconsole
 except ImportError:
