@@ -16,7 +16,7 @@ import binaryninja
 
 import os
 DEPENDENCY_PATH = os.path.join(
-    binaryninja.user_plugin_path,
+    binaryninja.user_plugin_path(),
     "Lib",
     "site-packages"
 )
